@@ -1,0 +1,13 @@
+body {
+	background-color: #f8907a;
+	padding-top: 70px;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #ece1e1;
+	font-size: 24px;
+}
+
+#welcome {
+	background-color: #fefefe;
+}
