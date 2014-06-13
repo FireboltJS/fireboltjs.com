@@ -3,7 +3,7 @@ body {
 }
 
 .jumbotron {
-	border: #d9230f solid 1px;
+	border: 1px #d9230f solid;
 	margin-top: 5px;
 }
 
@@ -30,4 +30,9 @@ body {
 
 #footer p {
 	margin-top: 15px;
+}
+
+#welcome {
+	border-width: 1px 0;
+	text-align: center;
 }

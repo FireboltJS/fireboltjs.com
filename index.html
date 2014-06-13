@@ -37,25 +37,35 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="http://api.fireboltjs.com">Firebolt API</a></li>
+					<li><a href="/playground">Playground</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="jumbotron" id="welcome">
-			<h1>Welcome!</h1>
-			<p>This is the official website for the Firebolt JavaScript library.</p>
-			<p style="max-width:800px">
-				We're still under development, but you can check out a preview of the <strong>Firebolt API</strong> by clicking the button below:
-			</p>
-			<p>
-				<a class="btn btn-lg btn-danger" href="http://api.fireboltjs.com" role="button">View the Firebolt API &raquo;</a>
-			</p>
-		</div>
-
+	<div class="jumbotron" id="welcome">
+		<h1>Welcome!</h1>
+		<p>This is the official website for the <strong>Firebolt JavaScript library</strong>.</p>
+		<p>
+			Firebolt is a <strong>lightweight</strong> and <strong>performant</strong> library based on the
+			<a href="http://jquery.com" target="_blank">jQuery</a> and <a href="http://prototypejs.org" target="_blank">Prototype</a> JavaScript libraries.
+		</p>
 		<br />
+		<p>
+			<a class="btn btn-lg btn-danger" href="http://api.fireboltjs.com" role="button">
+				View the Firebolt API <span class="glyphicon glyphicon-search"></span>
+			</a>
+		</p>
+		<br />
+		<p>or have some fun in the</p>
+		<p>
+			<a class="btn btn-lg btn-warning" href="/playground" role="button">
+				Firebolt Playground <span class="glyphicon glyphicon-play"></span>
+			</a>
+		</p>
+	</div>
 
+	<div class="container">
 		<h1>Download Firebolt</h1>
 		<p>The library is still under development, but you can download the latest stable(ish) version to try it out:</p>
 		<p>
@@ -74,8 +84,9 @@
 		</p>
 		<p>
 			Similar to <a href="http://zeptojs.com" target="_blank">Zepto.js</a>, Firebolt does not aim for 100% jQuery coverage.
-			It stays lean by only targeting only modern browsers and specifically leaves out jQuery functions that were made obsolete
-			by ES5 (i.e. <code>jQuery.trim()</code>).
+			It stays lean by targeting only modern browsers and specifically leaves out jQuery functions that were made obsolete
+			by ES5 (i.e. <code>jQuery.trim()</code>) as well as some other functionality rendered irrelevant due to Firebolt's
+			prototypal extensions.
 		</p>
 		<p>
 			In addition to being very small, Firebolt also aims to be blazing fast. Many functions are heavily perfomance tested using
@@ -95,7 +106,7 @@
 				API documentation
 				<ul>
 					<li>web design</li>
-					<li>adding code examples and/or detailed function descriptions</li>
+					<li>technical writing</li>
 				</ul>
 			</li>
 		</ul>
@@ -108,9 +119,9 @@
 
 		<h1>Contact</h1>
 		<p>
-			For general inquiries or if you'd like to help in developing this project, please contact <a href="mailto:info@fireboltjs.com">info@fireboltjs.com</a>.
+			For general inquiries or if you'd like to help in developing this project, please send an email to <a href="mailto:info@fireboltjs.com">info@fireboltjs.com</a>.
 			<br />
-			Found an issue with the library? Submit a new issue to Firebolt's <a href="https://github.com/FireboltJS/Firebolt/issues">GitHub repo</a>.
+			To suggest features, report bugs, or ask code-related questions, create an issue in Firebolt's <a href="https://github.com/FireboltJS/Firebolt/issues">GitHub repo</a>.
 		</p>
 	</div>
 
@@ -124,7 +135,7 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript (requires jQuery) -->
+	<!-- Bootstrap JavaScript -->
 	<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
