@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Nathan Woltman">
+	<meta name="description" content="Try out the Firebolt JavaScript library in your browser's console. Have fun!">
 
 	<title>Firebolt</title>
 
@@ -52,10 +53,10 @@ $ID('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selecto
 		<p>
 			The answer is that even though the code is very similar, what happens behind the scenes is very different.
 			When using the jQuery syntax, the CSS selector string is parsed, the button element is added to an array-like collection,
-			and then the collection is looped over to toggle the class of each element in the collection (or in this case, the one button element).
+			and the collection is then looped over to toggle the class of each element in the collection (or in this case, the one button element).
 		</p>
 		<p>
-			With the ID syntax, the native <code>document.getElementByID()</code> function is used immediately to retrieve the button
+			With the ID syntax, the native <code>document.getElementById()</code> function is used immediately to retrieve the button
 			and <code>.toggleClass()</code> is called directly on the element to toggle its class name. The following jsPerf test shows
 			that the ID selector syntax can be up to twice as fast as the classic syntax:
 			<a href="http://jsperf.com/firebolt-id-toggle" target="_blank">http://jsperf.com/firebolt-id-toggle</a>.
