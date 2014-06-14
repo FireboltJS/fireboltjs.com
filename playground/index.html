@@ -41,8 +41,10 @@
   </div>
 
   <div class="container">
+    <div class="page-header">
       <h1>Firebolt is loaded in this page. Open your console and give it a try!</h1>
-    <br />
+    </div>
+
     <h4>Try toggling this button with the code given below: <button id="btn-test" class="btn btn-primary">#btn-test</button></h4>
     <pre>
 $('#btn-test').toggleClass('btn-primary btn-success');  // Classic jQuery syntax
@@ -60,6 +62,15 @@ $ID('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selecto
       and <code>.toggleClass()</code> is called directly on the element to toggle its class name. The following jsPerf test shows
       that the ID selector syntax can be up to twice as fast as the classic syntax:
       <a href="http://jsperf.com/firebolt-id-toggle" target="_blank">http://jsperf.com/firebolt-id-toggle</a>.
+    </p>
+
+    <br />
+
+    <p>
+      Not sure what else to do? Take a check out the
+      <a href="http://api.fireboltjs.com/global.html" class="btn btn-danger" target="_blank">
+        Firebolt API <span class="glyphicon glyphicon-new-window"></span>
+      </a>
     </p>
   </div>
 

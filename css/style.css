@@ -22,6 +22,10 @@ body {
 	text-shadow: 0 10px 20px #fefcc9, 10px 0 30px #feec85, -20px -10px 40px #ffae34, 20px -30px 50px #ec760c, -20px -50px 60px #cd4606;
 }
 
+.page-header {
+	margin: 0 0 25px;
+}
+
 #footer {
 	background-color: #eee;
 	color: #d9230f;
