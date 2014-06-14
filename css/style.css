@@ -1,10 +1,15 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
 body {
 	background-color: #f7f7f7;
+	margin-bottom: 60px;
 }
 
 .jumbotron {
 	border: 1px #d9230f solid;
-	margin-top: 5px;
 }
 
 .navbar-default .navbar-brand {
@@ -21,7 +26,9 @@ body {
 	background-color: #eee;
 	color: #d9230f;
 	height: 50px;
-	margin-top: 20px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 #footer a {
@@ -29,10 +36,15 @@ body {
 }
 
 #footer p {
-	margin-top: 15px;
+	margin-top: 16px;
+}
+
+#footer span a {
+	text-decoration: underline;
 }
 
 #welcome {
 	border-width: 1px 0;
+	margin-top: 5px;
 	text-align: center;
 }
