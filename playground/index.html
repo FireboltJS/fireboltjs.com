@@ -1,74 +1,80 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Nathan Woltman">
-	<meta name="description" content="Try out the Firebolt JavaScript library in your browser's console. Have fun!">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Nathan Woltman">
+  <meta name="description" content="Try out the Firebolt JavaScript library in your browser's console. Have fun!">
 
-	<title>Firebolt</title>
+  <title>Firebolt</title>
 
-	<link rel="icon" type="image/png" href="/favicon.png?v=temp">
+  <link rel="icon" type="image/png" href="/favicon.png?v=temp">
 
-	<!-- Bootstrap Styles -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <!-- Bootstrap Styles -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
-	<!-- Site Styles -->
-	<link rel="stylesheet" href="/css/style.css">
+  <!-- Site Styles -->
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div class="navbar navbar-default navbar-static-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/"><strong>Firebolt</strong></a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/">Home</a></li>
-					<li><a href="http://api.fireboltjs.com">Firebolt API</a></li>
-					<li class="active"><a href="#">Playground</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><strong>Firebolt</strong></a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="http://api.fireboltjs.com">Firebolt API</a></li>
+          <li class="active"><a href="#">Playground</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-	<div class="container">
-		<h1>Firebolt is loaded in this page. Open your console and give it a try!</h1>
-		<br />
-		<h4>Try toggling this button with the code given below: <button id="btn-test" class="btn btn-primary">#btn-test</button></h4>
-<pre>
+  <div class="container">
+    <h1>Firebolt is loaded in this page. Open your console and give it a try!</h1>
+    <br />
+    <h4>Try toggling this button with the code given below: <button id="btn-test" class="btn btn-primary">#btn-test</button></h4>
+    <pre>
 $('#btn-test').toggleClass('btn-primary btn-success');  // Classic jQuery syntax
 $ID('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selector syntax
 </pre>
-		<br />
-		<p>You may be asking, "Why would I want to use this other syntax? They both accomplish the same thing and the code is almost identical."</p>
-		<p>
-			The answer is that even though the code is very similar, what happens behind the scenes is very different.
-			When using the jQuery syntax, the CSS selector string is parsed, the button element is added to an array-like collection,
-			and the collection is then looped over to toggle the class of each element in the collection (or in this case, the one button element).
-		</p>
-		<p>
-			With the ID syntax, the native <code>document.getElementById()</code> function is used immediately to retrieve the button
-			and <code>.toggleClass()</code> is called directly on the element to toggle its class name. The following jsPerf test shows
-			that the ID selector syntax can be up to twice as fast as the classic syntax:
-			<a href="http://jsperf.com/firebolt-id-toggle" target="_blank">http://jsperf.com/firebolt-id-toggle</a>.
-		</p>
-	</div>
+    <br />
+    <p>You may be asking, "Why would I want to use this other syntax? They both accomplish the same thing and the code is almost identical."</p>
+    <p>
+      The answer is that even though the code is very similar, what happens behind the scenes is very different.
+      When using the jQuery syntax, the CSS selector string is parsed, the button element is added to an array-like collection,
+      and the collection is then looped over to toggle the class of each element in the collection (or in this case, the one button element).
+    </p>
+    <p>
+      With the ID syntax, the native <code>document.getElementById()</code> function is used immediately to retrieve the button
+      and <code>.toggleClass()</code> is called directly on the element to toggle its class name. The following jsPerf test shows
+      that the ID selector syntax can be up to twice as fast as the classic syntax:
+      <a href="http://jsperf.com/firebolt-id-toggle" target="_blank">http://jsperf.com/firebolt-id-toggle</a>.
+    </p>
+  </div>
 
-	<!-- Bootstrap JavaScript -->
-	<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-	<script>$.noConflict()</script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <div id="footer">
+    <div class="container">
+      <p>&copy; 2014 <a href="https://github.com/woollybogger">Nathan Woltman</a></p>
+    </div>
+  </div>
 
-	<!-- Firebolt -->
-	<script src="/firebolt.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script>$.noConflict()</script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  <!-- Firebolt -->
+  <script src="/firebolt.js"></script>
 </body>
 </html>
