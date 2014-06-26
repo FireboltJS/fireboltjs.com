@@ -48,7 +48,7 @@
     <h4>Try toggling this button with the code given below: <button id="btn-test" class="btn btn-primary">#btn-test</button></h4>
     <pre>
 $('#btn-test').toggleClass('btn-primary btn-success');  // Classic jQuery syntax
-$ID('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selector syntax
+$$('btn-test').toggleClass('btn-primary btn-success');  // Firebolt's ID selector syntax (can also use $ID() if desired)
 </pre>
     <br />
     <p>You may be asking, "Why would I want to use this other syntax? They both accomplish the same thing and the code is almost identical."</p>
@@ -58,7 +58,7 @@ $ID('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selecto
       and the collection is then looped over to toggle the class of each element in the collection (or in this case, the one button element).
     </p>
     <p>
-      With the ID syntax, the native <code>document.getElementById()</code> function is used immediately to retrieve the button
+      With the ID selector syntax, the native <code>document.getElementById()</code> function is used immediately to retrieve the button
       and <code>.toggleClass()</code> is called directly on the element to toggle its class name. The following jsPerf test shows
       that the ID selector syntax can be up to twice as fast as the classic syntax:
       <a href="http://jsperf.com/firebolt-id-toggle" target="_blank">http://jsperf.com/firebolt-id-toggle</a>.
