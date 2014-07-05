@@ -36,8 +36,8 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="/">Home</a></li>
-          <li><a href="http://api.fireboltjs.com">Firebolt API</a></li>
           <li class="active"><a href="#">Playground</a></li>
+          <li><a href="http://api.fireboltjs.com">Firebolt API</a></li>
         </ul>
       </div>
     </div>
@@ -51,7 +51,7 @@
     <h4>Try toggling this button with the code given below: <button id="btn-test" class="btn btn-primary">#btn-test</button></h4>
     <pre>
 $('#btn-test').toggleClass('btn-primary btn-success');  // Classic jQuery syntax
-$$('btn-test').toggleClass('btn-primary btn-success');  // Firebolt's ID selector syntax (can also use $ID() if desired)
+$$('btn-test').toggleClass('btn-primary btn-success');  // Firebolt's ID selector syntax (can also use the alias $ID to be more verbose)
 </pre>
     <br />
     <p>You may be asking, "Why would I want to use this other syntax? They both accomplish the same thing and the code is almost identical."</p>
@@ -75,6 +75,10 @@ $$('btn-test').toggleClass('btn-primary btn-success');  // Firebolt's ID selecto
         Firebolt API &nbsp;<span class="glyphicon glyphicon-new-window"></span>
       </a>
     </p>
+
+    <br />
+
+    <p style="font-size:12px">Note: jQuery is also loaded in this page, but Firebolt has control of the <code>$</code> variable.</p>
   </div>
 
   <div id="footer">
