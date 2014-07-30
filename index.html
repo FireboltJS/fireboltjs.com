@@ -81,6 +81,10 @@
     </p>
     <p>
       <a class="btn btn-default" href="/firebolt.min.js" style="padding-right:16px"><b>firebolt.min.js</b> - minified version</a>
+      <span style="display:inline-block">
+        <span class="glyphicon glyphicon-arrow-right" style="font-size:13px; margin-left:5px"></span>
+        <i style="position:relative; top:1px">~9.7 kB when gzipped</i>
+      </span>
     </p>
 
     <br />
@@ -96,11 +100,17 @@
       by ES5 (i.e. <code>jQuery.trim()</code>) as well as some other functionality rendered irrelevant due to Firebolt's
       prototypal extensions.
     </p>
+    <h3>Performance</h3>
     <p>
       In addition to being very small, Firebolt also aims to be blazing fast. Many functions are heavily perfomance tested using
       <a href="http://jsperf.com" target="_blank">jsPerf</a> to obtain the highest possible performance average across today's
-      most commonly used browsers.
+      most commonly used browsers. Here are some jsPerf tests that demonstrate the power of Firebolt:
     </p>
+    <ul>
+      <li><a href="http://jsperf.com/js-selectors-perf" target="_blank">$( ) selector</a></li>
+      <li><a href="http://jsperf.com/jqtoggleclass" target="_blank">.toggleClass( )</a></li>
+      <li><a href="http://jsperf.com/arrdiff/4" target="_blank">Set difference</a> (Firebolt adds a function for this to the <code>Array</code> prototype)</li>
+    </ul>
 
     <br />
 
