@@ -11,6 +11,15 @@ body {
   margin-bottom: 60px;
 }
 
+a code {
+  color: #428bca;
+}
+
+a code:hover,
+a code:focus {
+  color: #2a6496;
+}
+
 .jumbotron {
   border: 1px #d9230f solid;
 }
