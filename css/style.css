@@ -65,6 +65,14 @@ a code:focus {
   text-decoration: underline;
 }
 
+#img-rotate,
+#img-scale {
+  border: #272822 solid 1px;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+}
+
 #welcome {
   border-width: 1px 0;
   margin-top: 5px;
