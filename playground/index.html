@@ -167,7 +167,21 @@ $$('img-scale').on('click', function() {
   <!-- Mobile Navbar Toggling -->
   <script>
     $QSA('.navbar-toggle[data-toggle=collapse]').on('click', function() {
-      $(this.toggleClass('collapsed').attr('data-target')).slideToggle(350);
+      var target = $1(this.toggleClass('collapsed').attr('data-target'));
+      if (target.hasClass('in')) {
+        target.addClass('collapsing')
+          .removeClass('collapse in')
+          .css('height', '');
+      }
+      else {
+        target.removeClass('collapse')
+          .addClass('collapsing in')
+          .css('height', target.scrollHeight + 'px');
+      }
+      setTimeout(function() {
+        target.removeClass('collapsing')
+          .addClass('collapse');
+      }, 350);
     });
   </script>
   <!-- Demo JavaScript -->
