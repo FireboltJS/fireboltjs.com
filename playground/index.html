@@ -164,13 +164,16 @@ $$('img-scale').on('click', function() {
     </div>
   </div>
 
-  <!-- Bootstrap JavaScript -->
-  <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <!-- Prism Syntax Highlighting -->
   <script src="/js/prism.js"></script>
   <!-- Firebolt -->
   <script src="/firebolt.js"></script>
+  <!-- Mobile Navbar Toggling -->
+  <script>
+    $QSA('.navbar-toggle[data-toggle=collapse]').on('click', function() {
+      $(this.toggleClass('collapsed').attr('data-target')).slideToggle(350);
+    });
+  </script>
   <!-- Demo JavaScript -->
   <script src="/js/playground.js"></script>
 </body>
