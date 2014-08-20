@@ -162,21 +162,16 @@
   <script src="/firebolt.min.js"></script>
   <!-- Mobile Navbar Toggling -->
   <script>
-    $QSA('.navbar-toggle[data-toggle=collapse]').on('click', function() {
+    $QS('.navbar-toggle[data-toggle=collapse]').on('click', function() {
       var target = $1(this.toggleClass('collapsed').attr('data-target'));
       if (target.hasClass('in')) {
-        target.addClass('collapsing')
-          .removeClass('collapse in')
-          .css('height', '');
+        target.removeClass('collapse in').addClass('collapsing').style.height = '';
       }
       else {
-        target.removeClass('collapse')
-          .addClass('collapsing in')
-          .css('height', target.scrollHeight + 'px');
+        target.removeClass('collapse').addClass('collapsing in').style.height = target.scrollHeight + 'px';
       }
       setTimeout(function() {
-        target.removeClass('collapsing')
-          .addClass('collapse');
+        target.removeClass('collapsing').addClass('collapse');
       }, 350);
     });
   </script>
