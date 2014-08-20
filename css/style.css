@@ -79,3 +79,15 @@ a code:focus {
   margin-top: 5px;
   text-align: center;
 }
+
+#welcome > h1 {
+  color: #d9230f;
+  font-weight: 700;
+}
+
+#welcome > h2 {
+  color: #d9230f;
+  font-style: italic;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
