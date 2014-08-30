@@ -29,15 +29,22 @@ a code:focus {
 }
 
 .navbar-default .navbar-brand {
-  color: #d9230f;
-  font-size: 24px;
+  color: transparent !important;
+  font-size: 30px;
+  position: relative;
 }
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-nav > li:not(.active) > a:hover,
 .navbar-default .navbar-nav > li:not(.active) > a:focus {
-  color: #d9230f;
   text-shadow: 0 10px 20px #fefcc9, 10px 0 30px #feec85, -20px -10px 40px #ffae34, 20px -30px 50px #ec760c, -20px -50px 60px #cd4606;
+}
+
+.navbar-default .navbar-brand img {
+  color: #d9230f;
+  position: absolute;
+  top: 14px;
+  left: 4px;
 }
 
 .page-header {
