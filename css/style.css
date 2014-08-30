@@ -80,14 +80,7 @@ a code:focus {
   text-align: center;
 }
 
-#welcome > h1 {
-  color: #d9230f;
-  font-weight: 700;
-}
-
-#welcome > h2 {
-  color: #d9230f;
-  font-style: italic;
-  margin-top: 0;
-  margin-bottom: 30px;
+#welcome > img {
+  margin-bottom: 35px;
+  max-width: 75%;
 }
