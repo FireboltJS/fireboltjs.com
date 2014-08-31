@@ -17,12 +17,13 @@
 		document.body.animate(
 			{color: colors[colorIndex], backgroundColor: colors[bgColorIndex]},
 			1000,
+			'linear',
 			cycleColors
 		);
 	}
 
 	$$('animate-colors').addEventListener('click', function() {
-		this.css('width', this.css('width')); // Prevent the button from changing size
+		this.css('width', this.offsetWidth + 'px'); // Prevent the button from changing size
 
 		if (this.hasClass('btn-success')) {
 			// Start animation
