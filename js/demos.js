@@ -1,5 +1,5 @@
 /**
- * @file playground.js
+ * @file demos.js
  * @author Nathan Woltman
  */
 

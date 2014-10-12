@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Nathan Woltman">
+  <meta name="description" content="Try out the Firebolt JavaScript library in your browser's console. Have fun!">
+
+  <title>Firebolt Test Chamber</title>
+
+  <link rel="icon" href="/favicon.ico?v=1">
+
+  <!-- Bootstrap Styles -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+  <!-- Prism Syntax Highlighting -->
+  <link rel="stylesheet" href="/css/prism.min.css" />
+
+  <!-- Site Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Google Analytics -->
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-41848498-3','auto');ga('send','pageview');</script>
+</head>
+<body class="language-javascript">
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <strong>Firebolt</strong>
+          <img src="/img/logo_small.png" alt="Firebolt">
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li class="active"><a href="#">Test Chamber</a></li>
+          <li><a href="http://api.fireboltjs.com">Firebolt API</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Firebolt is loaded in this page. Open your console and give it a try!</h1>
+    </div>
+
+    <h2>Basics</h2>
+    <h4>Try toggling this button with the code given below: <button id="btn-test" class="btn btn-primary">#btn-test</button></h4>
+    <pre class="line-numbers"><code>
+$('#btn-test').toggleClass('btn-primary btn-success'); // Classic jQuery syntax
+$$('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selector syntax (can also use the alias $ID to be more verbose)
+    </code></pre>
+    <br />
+    <p>You may be asking, "Why would I want to use this other syntax? They both accomplish the same thing and the code is almost identical."</p>
+    <p>
+      The answer is that even though the code is very similar, what happens behind the scenes is very different.
+      When using the jQuery syntax, the CSS selector string is parsed, the button element is added to an array-like collection,
+      and the collection is then looped over to toggle the class of each element in the collection (or in this case, the one button element).
+    </p>
+    <p>
+      With the ID selector syntax, the native <code>document.getElementById()</code> function is used immediately to retrieve the button
+      and <code>.toggleClass()</code> is called directly on the element to toggle its class name. The ID selector syntax can be up to twice
+      as fast as the classic syntax as demonstrated by <a href="http://jsperf.com/firebolt-id-toggle/3" target="_blank">this jsPerf test</a>.
+    </p>
+
+    <hr id="animations" />
+
+    <h2>Animations</h2>
+    <p>Since Firebolt's animations are done with CSS transitions, animating special style properties does not require any plugins and is very simple.</p>
+
+    <h3>Animating Colors</h3>
+    <p>In this example, the document body's font color and text color is cycled through the rainbow.</p>
+    <h4>Relevant Code:</h4>
+    <pre class="line-numbers"><code>
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'],
+    colorIndex = 0,
+    bgColorIndex = 3;
+
+function cycleColors() {
+    colorIndex = ++colorIndex % colors.length;
+    bgColorIndex = ++bgColorIndex % colors.length;
+    document.body.animate(
+        {color: colors[colorIndex], backgroundColor: colors[bgColorIndex]},
+        1000,
+        'linear',
+        cycleColors
+    );
+}
+
+/* Starts the animation */
+cycleColors();
+
+/* Stops the animation and restores the body's original style */
+document.body.stop().style.cssText = '';
+    </code></pre>
+    <h4>Demo:</h4>
+    <button id="animate-colors" class="btn btn-lg btn-success">Psychedelic Time!</button>
+
+    <div style="height:8px"></div>
+
+    <h3>Transform Animations</h3>
+    <p>In this example, clicking on the first image makes it spin all the way around, and clicking the other one makes it grow and shrink.</p>
+    <h4>Code:</h4>
+    <pre class="line-numbers"><code class="language-markup">
+&lt;p>
+  &lt;img id="img-rotate" src="/img/html5.png" />
+  &lt;img id="img-scale" src="/img/js6.png">
+&lt;/p>
+
+&lt;script>
+$$('img-rotate').on('click', function() {
+  this.finish() // Call .finish() in case the image is clicked in the middle of the animation
+      .animate({transform: 'rotate(360deg)'}, 1000, function() {
+         this.css('transform', ''); // Clear the transform style so the animation can be run again
+      });
+});
+
+$$('img-scale').on('click', function() {
+  this.stop(); // Stop the animation in case it's already running
+  if (this.data('isBig')) {
+    this.animate({transform: ''}, 700).data('isBig', false);
+  }
+  else {
+    this.animate({transform: 'scale(2)'}, 700).data('isBig', true);
+  }
+});
+&lt;/script>
+    </code></pre>
+    <h4>Demo:</h4>
+    <p>
+      <img id="img-rotate" src="/img/html5.png" />
+      <img id="img-scale" src="/img/js6.png" />
+    </p>
+
+    <hr />
+
+    <p>
+      Not sure what else to do? Check out the
+      <a href="http://api.fireboltjs.com/global.html" class="btn btn-danger" target="_blank">
+        Firebolt API &nbsp;<span class="glyphicon glyphicon-new-window"></span>
+      </a>
+    </p>
+  </div>
+
+  <div id="footer">
+    <div class="container">
+      <p>
+        &copy; 2014 <a href="https://github.com/woollybogger">Nathan Woltman</a>
+        <span class="pull-right">
+          <span class="hidden-xs">Firebolt and this website are released under the</span>
+          <a href="https://github.com/woollybogger/fireboltjs.com/blob/master/LICENSE.txt">MIT License</a>
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Prism Syntax Highlighting -->
+  <script src="/js/prism.js"></script>
+  <!-- Firebolt -->
+  <script src="/firebolt.js"></script>
+  <!-- Demo JavaScript -->
+  <script src="/js/demos.js"></script>
+  <!-- Mobile Navbar Toggling -->
+  <script>
+    $QS('.navbar-toggle[data-toggle=collapse]').on('click', function() {
+      var target = $1(this.toggleClass('collapsed').attr('data-target'));
+      if (target.hasClass('in')) {
+        target.removeClass('collapse in').addClass('collapsing').style.height = '';
+      }
+      else {
+        target.removeClass('collapse').addClass('collapsing in').style.height = target.scrollHeight + 'px';
+      }
+      setTimeout(function() {
+        target.removeClass('collapsing').addClass('collapse');
+      }, 350);
+    });
+  </script>
+</body>
+</html>
