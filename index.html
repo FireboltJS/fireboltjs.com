@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -170,8 +170,7 @@
       var target = $1(this.toggleClass('collapsed').attr('data-target'));
       if (target.hasClass('in')) {
         target.removeClass('collapse in').addClass('collapsing').style.height = '';
-      }
-      else {
+      } else {
         target.removeClass('collapse').addClass('collapsing in').style.height = target.scrollHeight + 'px';
       }
       setTimeout(function() {

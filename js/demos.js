@@ -29,8 +29,7 @@
 			// Start animation
 			cycleColors();
 			this.textContent = 'Normal Time!';
-		}
-		else {
+		} else {
 			// Stop animation
 			document.body.stop().style.cssText = '';
 			this.textContent = 'Psychedelic Time!';
@@ -54,8 +53,7 @@ $$('img-scale').on('click', function() {
 	this.stop(); // Stop the animation in case it's already running
 	if (this.data('isBig')) {
 		this.animate({transform: ''}, 700).data('isBig', false);
-	}
-	else {
+	} else {
 		this.animate({transform: 'scale(2)'}, 700).data('isBig', true);
 	}
 });
