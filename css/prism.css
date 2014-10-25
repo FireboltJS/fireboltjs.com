@@ -32,6 +32,7 @@ pre[class*="language-"] {
 	margin: .5em 0;
 	overflow: auto;
 	border-radius: 0.3em;
+  word-wrap: initial; /* Override Bootstrap's break-word wrapping so code does not wrap */
 }
 
 :not(pre) > code[class*="language-"],
