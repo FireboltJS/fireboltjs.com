@@ -11,8 +11,8 @@
   <link rel="icon" href="/favicon.ico?v=1">
 
   <!-- Bootstrap Styles -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap-theme.min.css">
   <!-- Site Styles -->
   <link rel="stylesheet" href="/css/style.css">
 
@@ -77,5 +77,36 @@
       </div>
     </div>
   </div>
+
+  <br />
+
+  <div id="footer">
+    <div class="container">
+      <p>
+        &copy; 2014 <a href="https://github.com/woollybogger">Nathan Woltman</a>
+        <span class="pull-right">
+          <span class="hidden-xs">Firebolt and this website are released under the</span>
+          <a href="https://github.com/woollybogger/fireboltjs.com/blob/master/LICENSE.txt">MIT License</a>
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Firebolt -->
+  <script src="/firebolt.min.js"></script>
+  <!-- Mobile Navbar Toggling -->
+  <script>
+    $QS('.navbar-toggle[data-toggle=collapse]').on('click', function() {
+      var target = $1(this.toggleClass('collapsed').attr('data-target'));
+      if (target.hasClass('in')) {
+        target.removeClass('collapse in').addClass('collapsing').style.height = '';
+      } else {
+        target.removeClass('collapse').addClass('collapsing in').style.height = target.scrollHeight + 'px';
+      }
+      setTimeout(function() {
+        target.removeClass('collapsing').addClass('collapse');
+      }, 350);
+    });
+  </script>
 </body>
 </html>
