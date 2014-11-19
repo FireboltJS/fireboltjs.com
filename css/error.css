@@ -1,0 +1,17 @@
+/**
+ * Styles for error pages like 404
+ */
+
+img {
+  max-width: 100%;
+}
+.flame-princess {
+  background-color: #fff;
+}
+.help {
+  font-size: 1.5em;
+  padding-top: 2em;
+}
+.info {
+  margin-top: 50px;
+}
