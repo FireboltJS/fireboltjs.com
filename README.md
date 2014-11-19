@@ -1,4 +1,4 @@
 <a href="http://fireboltjs.com" target="_blank">fireboltjs.com</a>
 ==============
 
-Firebolt Website
+Website for the [Firebolt](https://github.com/woollybogger/Firebolt) JavaScript library.
