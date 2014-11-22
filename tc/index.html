@@ -24,7 +24,7 @@
   <!-- Google Analytics -->
   <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-41848498-3','auto');ga('send','pageview');</script>
 </head>
-<body class="language-javascript">
+<body>
   <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -56,7 +56,7 @@
 
     <h2>Basics</h2>
     <h4>Try toggling this button with the code given below: <button id="btn-test" class="btn btn-primary">#btn-test</button></h4>
-    <pre class="line-numbers"><code>
+    <pre class="language-javascript"><code>
 $('#btn-test').toggleClass('btn-primary btn-success'); // Classic jQuery syntax
 $$('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selector syntax (can also use the alias $ID to be more verbose)
     </code></pre>
@@ -81,7 +81,7 @@ $$('btn-test').toggleClass('btn-primary btn-success'); // Firebolt's ID selector
     <h3>Animating Colors</h3>
     <p>In this example, the document body's font color and text color is cycled through the rainbow.</p>
     <h4>Relevant Code:</h4>
-    <pre class="line-numbers"><code>
+    <pre class="language-javascript line-numbers"><code>
 var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'],
     colorIndex = 0,
     bgColorIndex = 3;
@@ -111,10 +111,10 @@ document.body.stop().style.cssText = '';
     <h3>Transform Animations</h3>
     <p>In this example, clicking on the first image makes it spin all the way around, and clicking the other one makes it grow and shrink.</p>
     <h4>Code:</h4>
-    <pre class="line-numbers"><code class="language-markup">
+    <pre class="language-markup line-numbers"><code>
 &lt;p>
   &lt;img id="img-rotate" src="/img/html5.png" />
-  &lt;img id="img-scale" src="/img/js6.png">
+  &lt;img id="img-scale" src="/img/js6.png" />
 &lt;/p>
 
 &lt;script>
