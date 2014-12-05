@@ -26,7 +26,7 @@ a.hash-link {
 a.hash-link:before {
   content: "#"
 }
-a.hash-link:hover {
+h2:hover > a.hash-link {
   color: rgba(0, 0, 0, 0.4);
   text-decoration: none;
 }
