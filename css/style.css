@@ -20,6 +20,17 @@ a code:focus {
   color: #2a6496;
 }
 
+a.hash-link {
+  color: rgba(0, 0, 0, 0);
+}
+a.hash-link:before {
+  content: "#"
+}
+a.hash-link:hover {
+  color: rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+}
+
 .jumbotron {
   border: 1px #d9230f solid;
 }

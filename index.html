@@ -75,6 +75,9 @@
     <p>
       Firebolt is a high performance JavaScript library packed into a very small file size. Firebolt's functionality is based off of <a href="http://jquery.com" target="_blank">jQuery</a> (a lot of the API is identical to jQuery's), but is built by extending the <code>prototype</code> of native objects, similar to the <a href="http://prototypejs.org" target="_blank">Prototype framework</a>. This opens up a whole new world of coding possibilties, allowing users of the libary to write extremely efficient code, but with the simplicity of a jQuery-like API.
     </p>
+    <p>
+      But isn't extending prototypes in JavaScript a bad thing? Usually the answer is "yes", but that is not the case for Firebolt. <a href="/prototype-extending" title="Extending Prototypes &amp; Firebolt">Read this</a> to find out why Firebolt's prototype-extending design is not "evil".
+    </p>
     <h3>Size</h3>
     <p>
       Similar to <a href="http://zeptojs.com" target="_blank">Zepto</a>, Firebolt keeps its file size small by targeting only modern browsers. Firebolt's size is comparable to Zepto's, which is about <strong>1/3</strong> the size of jQuery after being minified and gzipped. This means that Firebolt loads very quickly and keeps bandwidth usage low for both clients and servers.
@@ -95,7 +98,7 @@
     </ul>
     <h3>Animations</h3>
     <p>
-      Firebolt animates elements purely with CSS using <a href="http://www.w3schools.com/css/css3_transitions.asp">CSS3 transitions</a>. This means that all Firebolt has to do is set the correct CSS properties on the element, and the browser takes care of the rest. Since the browser is doing all of the work, you can always count on animations to be smooth and look consistent on all platforms. Furthermore, animating using CSS transtions allows Firebolt to natively support animating special properties such colors and <a href="http://www.w3schools.com/cssref/css3_pr_transform.asp">transforms</a>. Check out the <a href="/tc/#animations">demos</a> to see these animations in action!
+      Firebolt animates elements purely with CSS using <a href="http://www.w3schools.com/css/css3_transitions.asp">CSS3 transitions</a>. This means that the browser takes care of a majority of the work involved in the animation, so you can always count on animations to be smooth and look consistent on all platforms. Furthermore, animating using CSS transtions allows Firebolt to natively support animating special properties such colors and <a href="http://www.w3schools.com/cssref/css3_pr_transform.asp">transforms</a>. Check out the <a href="/tc/#animations">demos</a> to see these animations in action!
       <br />
       <span style="display:inline-block; font-size:14px; padding-top:10px">
         <strong>Note:</strong> Since Internet Explorer 9 does not support CSS transitions, Firebolt gracefully degrades animations in IE9 to use a very simple JavaScript animation algorithm. This also means that special CSS properties (i.e. colors) are not animated in IE9, but are instead set to the target value after the specified animation time has passed.

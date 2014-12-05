@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Nathan Woltman">
+  <meta name="description" content="Learn why Firebolt's prototype-extending design isn't evil.">
+
+  <title>Extending Prototypes &amp; Firebolt</title>
+
+  <link rel="icon" href="/favicon.ico?v=1">
+
+  <!-- Bootstrap Styles -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+  <!-- Prism Syntax Highlighting -->
+  <link rel="stylesheet" href="/css/prism.min.css">
+
+  <!-- Site Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Google Analytics -->
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-41848498-3','auto');ga('send','pageview');</script>
+</head>
+<body>
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <strong>Firebolt</strong>
+          <img src="/img/logo_small.png" alt="Firebolt">
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/tc">Test Chamber</a></li>
+          <li><a href="http://api.fireboltjs.com">Firebolt API</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Extending Prototypes &amp; Firebolt</h1>
+    </div>
+
+    <p>
+      Firebolt is a framework that extends native and host JavaScript objects. It has been said many times that doing this is "evil", and this was quite true up until recently. However, modern browsers are much more amenable to prototype-extending, enabling Firebolt to be a reliable and stable framework.
+    </p>
+    <p>
+      Below are the specific ways in which prototype-extending can cause problems and how Firebolt overcomes these problems.
+    </p>
+
+    <br>
+
+    <h2 id="future-proofing">
+      1. Future-proofing <a href="#future-proofing" class="hash-link"></a>
+    </h2>
+    <h3>Problems:</h3>
+    <p>
+      New ECMAScript specifications may implement a new method with the same name as a library that has already implemented it and but with functional differences.
+    </p>
+    <h3>Solution:</h3>
+    <p>
+      ECMAScript specs take a long time from when they are first written up to when they are implemented so it is easy to use names that don't conflict with future specs or change the name of something if it is going to conflict (as there will be lots of time for developers to accept the name change) or even change a method so that it is in line with the future specification.
+    </p>
+    <p>
+      Another option would be to use names that are very unlikely to be used in a future ECMAScript or DOM specification. Of course, this may mean that the names you come up with will be somewhat obscure. How obscure the name is should depend on how many developers are working with the code. For one developer, you can be as obscure as you want, whereas large teams should choose more conventional names.
+    </p>
+    <h3>Firebolt's Stance:</h3>
+    <p>
+      Firebolt uses fairly descriptive names except for when the point of the function is to reduce the amount of code that needs to be written (like how <code>Element.prototype.QSA</code> is an alias for <code>Element.prototype.querySelectorAll</code>). Currently, Firebolt is future-proofed against ECMAScript 6 and what currently exists of ECMAScript 7 as well as what is currently in the WHATWG <a href="https://dom.spec.whatwg.org/">DOM Living Standard</a>.
+    </p>
+
+    <br>
+
+    <h2 id="enumerable_properties">
+      2. Enumerable Properties <a href="#enumerable_properties" class="hash-link"></a>
+    </h2>
+    <h3>Problems:</h3>
+    <p>
+      Extending a prototype can expose the extensions as enumerable properties (i.e. on an Array), which can cause problems with <code>for...in</code> loops as seen in the example below.
+    </p>
+    <pre><code class="language-javascript">
+for (var i in []) {
+  console.log(i); // Logs nothing
+}
+
+Array.prototype.remove = function() { /* ... */ };
+for (var i in []) {
+  console.log(i); // -> "remove"
+}
+    </code></pre>
+    <h3>Solution:</h3>
+    <p>
+      Use <code>Object.defineProperty()</code> to extend prototypes without making the new property enumerable. This is perfectly fine if you do not need to support IE8 or below.
+    </p>
+    <h3>Firebolt's Stance:</h3>
+    <p>
+      Firebolt only supports IE9 and up so Firebolt uses <code>Object.defineProperty()</code> to define non-enumerable properties when necessary.
+    </p>
+
+    <br>
+
+    <h2 id="property_shadowing">
+      3. Property Shadowing <a href="#property_shadowing" class="hash-link"></a>
+    </h2>
+    <h3>Problems:</h3>
+    <p>
+      Extending <code>Object.prototype</code> will mean that all objects will automatically have that property (which may be enumerated) and the property may be overwritten and cause confusion. Example:
+    </p>
+    <pre><code class="language-javascript">
+Object.prototype.doSomething = function() { /* ... */ };
+
+var obj1 = {
+  a: false,
+  b: true
+};
+var obj2 = {
+  doSomething: false,
+  doSomethingElse: true
+};
+
+obj1.doSomething(); // Works
+obj2.doSomething(); // TypeError: boolean is not a function
+    </code></pre>
+    <h3>Solution:</h3>
+    <p>
+      Just don't extend <code>Object.prototype</code>.
+    </p>
+    <p>
+      Or use <code>Object.defineProperty()</code> to make sure the new property is not enumerable and be mindful when defining an object with a property that has the same name as the extension.
+    </p>
+    <h3>Firebolt's Stance:</h3>
+    <p>
+      Firebolt simply never extends <code>Object.prototype</code>.
+    </p>
+
+    <br>
+
+    <h2 id="collisions">
+      4. Collisions <a href="#collisions" class="hash-link"></a>
+    </h2>
+    <h3>Problems:</h3>
+    <p>
+      Two developers (or libraries) may extend a prototype in two different places with the same property name but with conflicting implementations.
+    </p>
+    <h3>Solution:</h3>
+    <p>
+      Individual developers should never extend prototypes when working with other developers. It is perfectly fine to use (or make) a prototype-extending library with a well-documented API so everyone working on the same project knows what methods there are and how they work. You should also only ever include one library that extends prototypes in a web page unless you are absolutely certain there will be no collisions.
+    </p>
+    <h3>Firebolt's Stance:</h3>
+    <p>
+      Firebolt is a framework with a fully-documented API. When using a prototype-extending framework, you should expect the documented extensions to exist and function as documented. You should also expect that those are the only extensions that have been made.
+    </p>
+
+    <br>
+
+    <h2 id="extending_host_objects">
+      5. Extending Host (DOM) Objects <a href="#extending_host_objects" class="hash-link"></a>
+    </h2>
+    <h3>Problems:</h3>
+    <p>
+      kangax wrote a blog post on the problems with extending DOM objects: <a href="http://perfectionkills.com/whats-wrong-with-extending-the-dom/" title="What's wrong with extending the DOM">http://perfectionkills.com/whats-wrong-with-extending-the-dom/</a>
+    </p>
+    <h3>Solution:</h3>
+    <p>
+      The DOM specification has been much improved since that blog post was written (now on to Level 5, which is HTML5) and modern browsers (since IE9) implement the DOM spec fairly consistently. This means that there are no more problems with performance or the IE DOM (mostly) and there are far fewer browser bugs that need to be taken into consideration. There is also a working future specification that we can look at to avoid possible future collisions (the <a href="https://dom.spec.whatwg.org/">DOM Living Standard</a>).
+    </p>
+    <h3>Firebolt's Stance:</h3>
+    <p>
+      Firebolt only supports IE9 and above and tries it's best to avoid collisions with current DOM properties (there is currently <a href="http://api.fireboltjs.com/Node.html#text" title="Node#text">1 collision</a> that is clearly documented), so the problems mentioned in kangax's post do not apply to Firebolt.
+    </p>
+
+    <br>
+
+  </div>
+
+  <div id="footer">
+    <div class="container">
+      <p>
+        &copy; 2014 <a href="https://github.com/woollybogger">Nathan Woltman</a>
+        <span class="pull-right">
+          <span class="hidden-xs">Firebolt and this website are released under the</span>
+          <a href="https://github.com/woollybogger/fireboltjs.com/blob/master/LICENSE.txt">MIT License</a>
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Prism Syntax Highlighting -->
+  <script src="/js/prism.js"></script>
+  <!-- Firebolt -->
+  <script src="/firebolt.js"></script>
+  <!-- Mobile Navbar Toggling -->
+  <script>
+    $QS('.navbar-toggle[data-toggle=collapse]').on('click', function() {
+      var target = $1(this.toggleClass('collapsed').attr('data-target'));
+      if (target.hasClass('in')) {
+        target.removeClass('collapse in').addClass('collapsing').style.height = '';
+      } else {
+        target.removeClass('collapse').addClass('collapsing in').style.height = target.scrollHeight + 'px';
+      }
+      setTimeout(function() {
+        target.removeClass('collapsing').addClass('collapse');
+      }, 350);
+    });
+  </script>
+</body>
+</html>
