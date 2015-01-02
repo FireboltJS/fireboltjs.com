@@ -93,8 +93,7 @@
     </p>
     <pre><code class="language-javascript">
 for (var i in []) {
-  console.log(i); // Logs nothing
-}
+  console.log(i); // Never gets called
 
 Array.prototype.remove = function() { /* ... */ };
 for (var i in []) {
